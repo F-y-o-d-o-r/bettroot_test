@@ -13,8 +13,8 @@
         <div class="top-cart-info">
             <div class="container top-cart-info-container">
                 <span class="top-cart-info__item">
-                     Товаров в корзине - <span class="red-info">XXX</span>,
-                      на сумму <span class="red-info">XXX</span> грн</span>
+                      Товаров в корзине - <span class="red-info" id="cart-num">XXX</span>,
+                      на сумму <span class="red-info" id="full-price">XXX</span> грн</span>
                 <button class="btn-check">Оформить заказ</button>
             </div>
         </div><!-- /.top-cart-info -->
@@ -34,7 +34,7 @@
             <div class="filter-box">
                 <div class="select-box">
                     <label class="filter-label">Категория</label>
-                    <select class="select-control">
+                    <select class="select-control" id="kategory-select">
                         <option value="0">Все</option>
                         <option value="1">Завтраки</option>
                         <option  value="2">Первые блюда</option>
@@ -43,7 +43,7 @@
                 </div><!-- /.select-box -->
                 <div class="price-select-box">
                     <label class="filter-label">Цена</label>
-                    <select class="select-control">
+                    <select class="select-control" id="price-select">
                         <option value="0">Все</option>
                         <option value="30">До 30 грн</option>
                         <option value="50">До 50 грн</option>
@@ -55,7 +55,7 @@
 
 
 
-            <div class="products-box grid-box">
+            <div class="products-box grid-box" id = "products-box">
 
                 <div class="product-box__item">
                     <h3 class="product-box__title">Овсяная каша с фруктами</h3>
@@ -244,7 +244,7 @@
     </footer>
 </div><!-- /.app-container -->
 
-
+<script async src="js/main.js"></script>
 
 </body>
 </html>
