@@ -11,6 +11,8 @@ var shop = (function() {
     shop.allItemsFull = [ ...shop.allItemsFull ];
     document.getElementById('kategory-select').addEventListener('change', shop.chng, false);
     document.getElementById('price-select').addEventListener('change', shop.chng, false);
+    /*modal*/
+    document.getElementsByClassName('btn-check')[0].addEventListener('click', shop.modalWindow, false);
   });
 
   return {
@@ -90,6 +92,40 @@ var shop = (function() {
       document.getElementsByClassName('grid-box')[0].innerHTML = '';
       for (var i = 0; i < arr_sort_result2.length; i++) {
         document.getElementsByClassName('grid-box')[0].appendChild(arr_sort_result2[i]);
+      }
+    },
+    modal: '',
+    modalWindow: function() {
+      shop.modal = document.createElement('div');
+      shop.modal.className = 'modal';
+      shop.modal.style.cssText =
+        'z-index:10;background-color:#FF8C00;position: fixed;width: 50%; margin-left:50%;transform:translateX(-50%); margin-top:20%;';
+      if (shop.fullPrice > 0) {
+        shop.modal.innerHTML =
+          '<form><p>Введите имя</p><input type="text" name="text"><p>Введите e-mail</p><input type="email" name="email"><button onclick="shop.toSend(event)">Отправить</button></form>';
+      } else {
+        shop.modal.innerHTML = '<p>Выберите товар</p><button onclick="shop.toClose(event)">Закрыть</button>';
+      }
+      document.body.insertBefore(shop.modal, document.body.getElementsByClassName('app-container')[0]);
+    },
+    toClose: function(event) {
+      event.stopPropagation();
+      shop.modal.remove();
+    },
+    toSend: function(event) {
+      event.preventDefault();
+      var name = document.forms[0].elements[0].value;
+      var value = document.forms[0].elements[1].value;
+      var reg = /\S/;
+      if (reg.test(name) && reg.test(value)) {
+        shop.modal.remove();
+        shop.fullPrice = 0;
+        shop.cartNum = 0;
+        document.querySelector('#full-price').innerText = shop.fullPrice;
+        document.querySelector('#cart-num').innerText = shop.cartNum;
+        alert('Спасибо за покупку');
+      } else {
+        alert('Заполните все поля!');
       }
     }
   };
