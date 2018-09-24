@@ -191,6 +191,13 @@ h3 {
 
 .modal {
   padding: 20px;
+  z-index: 10;
+  background-color: #ff8c00;
+  position: fixed;
+  width: 50%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-top: 20%;
 }
 
 .modal form input {
