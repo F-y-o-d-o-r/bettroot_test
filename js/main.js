@@ -17,14 +17,9 @@ var shop = {
     );
   },
   sortTable: function(category, price) {
-    //var arr_sort = [];
-    // you can have only 1 addition array
     var arr_sort_result = [];
     var arr_sort_result2 = [];
-    // for what you declare a new array with same parameters in allItemsFull
-    // if you don`t change it
     for (var i = 0; i < shop.allItemsFull.length; i++) {
-      //arr_sort[i] = shop.allItemsFull[i];
       switch (price) {
         case 1:
           if (parseInt(shop.allItemsFull[i].querySelector('p').textContent) < 30) {
@@ -51,40 +46,7 @@ var shop = {
           break;
       }
     }
-    /*category sort*/
-    // may be it is better to do it with Array.prototype.filter()
-    // arr_sort.forEach(function(item, i, arr) {
-    //   // it is better to send value of price not the index so you will have the similar logic for all
-    //   // and don`t use switch for it
-    //   switch (price) {
-    //     case 1:
-    //       if (parseInt(item.querySelector('p').textContent) < 30) {
-    //         arr_sort_result.push(item);
-    //       }
-    //       break;
-    //     case 2:
-    //       if (parseInt(item.querySelector('p').textContent) < 50) {
-    //         arr_sort_result.push(item);
-    //       }
-    //       break;
-    //     case 3:
-    //       if (parseInt(item.querySelector('p').textContent) < 100) {
-    //         arr_sort_result.push(item);
-    //       }
-    //       break;
-    //     case 4:
-    //       if (parseInt(item.querySelector('p').textContent) < 150) {
-    //         arr_sort_result.push(item);
-    //       }
-    //       break;
-    //     default:
-    //       arr_sort_result = [ ...shop.allItemsFull ];
-    //       break;
-    //   }
-    // });
     arr_sort_result.forEach(function(item, i, arr) {
-      // it is better to send value of category not the index so you will have the similar logic for all
-      // and don`t use switch for it
       switch (category) {
         case 0:
           arr_sort_result2 = [ ...arr_sort_result ];
