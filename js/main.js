@@ -17,46 +17,71 @@ var shop = {
     );
   },
   sortTable: function(category, price) {
-    var arr_sort = [];
+    //var arr_sort = [];
     // you can have only 1 addition array
     var arr_sort_result = [];
     var arr_sort_result2 = [];
     // for what you declare a new array with same parameters in allItemsFull
     // if you don`t change it
     for (var i = 0; i < shop.allItemsFull.length; i++) {
-      arr_sort[i] = shop.allItemsFull[i];
-    }
-    /*category sort*/
-    // may be it is better to do it with Array.prototype.filter()
-    arr_sort.forEach(function(item, i, arr) {
-      // it is better to send value of price not the index so you will have the similar logic for all
-      // and don`t use switch for it
+      //arr_sort[i] = shop.allItemsFull[i];
       switch (price) {
         case 1:
-          if (parseInt(item.querySelector('p').textContent) < 30) {
-            arr_sort_result.push(item);
+          if (parseInt(shop.allItemsFull[i].querySelector('p').textContent) < 30) {
+            arr_sort_result.push(shop.allItemsFull[i]);
           }
           break;
         case 2:
-          if (parseInt(item.querySelector('p').textContent) < 50) {
-            arr_sort_result.push(item);
+          if (parseInt(shop.allItemsFull[i].querySelector('p').textContent) < 50) {
+            arr_sort_result.push(shop.allItemsFull[i]);
           }
           break;
         case 3:
-          if (parseInt(item.querySelector('p').textContent) < 100) {
-            arr_sort_result.push(item);
+          if (parseInt(shop.allItemsFull[i].querySelector('p').textContent) < 100) {
+            arr_sort_result.push(shop.allItemsFull[i]);
           }
           break;
         case 4:
-          if (parseInt(item.querySelector('p').textContent) < 150) {
-            arr_sort_result.push(item);
+          if (parseInt(shop.allItemsFull[i].querySelector('p').textContent) < 150) {
+            arr_sort_result.push(shop.allItemsFull[i]);
           }
           break;
         default:
           arr_sort_result = [ ...shop.allItemsFull ];
           break;
       }
-    });
+    }
+    /*category sort*/
+    // may be it is better to do it with Array.prototype.filter()
+    // arr_sort.forEach(function(item, i, arr) {
+    //   // it is better to send value of price not the index so you will have the similar logic for all
+    //   // and don`t use switch for it
+    //   switch (price) {
+    //     case 1:
+    //       if (parseInt(item.querySelector('p').textContent) < 30) {
+    //         arr_sort_result.push(item);
+    //       }
+    //       break;
+    //     case 2:
+    //       if (parseInt(item.querySelector('p').textContent) < 50) {
+    //         arr_sort_result.push(item);
+    //       }
+    //       break;
+    //     case 3:
+    //       if (parseInt(item.querySelector('p').textContent) < 100) {
+    //         arr_sort_result.push(item);
+    //       }
+    //       break;
+    //     case 4:
+    //       if (parseInt(item.querySelector('p').textContent) < 150) {
+    //         arr_sort_result.push(item);
+    //       }
+    //       break;
+    //     default:
+    //       arr_sort_result = [ ...shop.allItemsFull ];
+    //       break;
+    //   }
+    // });
     arr_sort_result.forEach(function(item, i, arr) {
       // it is better to send value of category not the index so you will have the similar logic for all
       // and don`t use switch for it
@@ -94,11 +119,15 @@ var modals = {
     modals.modal = document.createElement('div');
     modals.modal.className = 'modal';
     if (shop.fullPrice > 0) {
-      // don`t use innerHTML BAD practice
-      modals.modal.innerHTML =
-        '<form class="form"><p>Введите имя</p><input type="text" name="text"><p>Введите e-mail</p><input type="email" name="email"><button onclick="modals.toSend(event)">Отправить</button></form>';
+      modals.modal.insertAdjacentHTML(
+        'afterBegin',
+        '<form class="form"><p>Введите имя</p><input type="text" name="text"><p>Введите e-mail</p><input type="email" name="email"><button onclick="modals.toSend(event)">Отправить</button></form>'
+      );
     } else {
-      modals.modal.innerHTML = '<p>Выберите товар</p><button onclick="modals.toClose(event)">Закрыть</button>';
+      modals.modal.insertAdjacentHTML(
+        'afterBegin',
+        '<p>Выберите товар</p><button onclick="modals.toClose(event)">Закрыть</button>'
+      );
     }
     document.body.insertBefore(modals.modal, document.body.getElementsByClassName('app-container')[0]);
   },
